@@ -1,0 +1,175 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/84a612beee.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container">
+        <!--Class to center the logo-->
+        <div class="row">
+            <img src="logo.png" class="img-fluid" alt="logo">
+        </div>
+
+        <!--Search bar-->
+        <div class="row">
+            <div class="col">
+                <input type="text" class="form-control" placeholder="Item Number" aria-label="Item Number">
+            </div>
+            <div class="col">
+                <select class="form-control form-control-sm">
+                    <option>Select Brand</option>
+                    <option>Nike</option>
+                </select>
+
+            </div>
+            <div class="col">
+                <select class="form-control form-control-sm">
+                    <option>Select size</option>
+                    <option>Test</option>
+                </select>
+            </div>
+
+            <div class="col">
+                <select class="form-control form-control-sm">
+                    <option>Select Price Range</option>
+                    <option>$0-$99</option>
+                </select>
+            </div>
+
+
+            <!-- The search button -->
+            <button type="button" class="btn btn-outline-primary btn-sm">Search</button>
+        </div>
+
+
+        <!--row between new and nav bar-->
+        <div class="row justify-content-center m-3">
+        </div>
+
+        <!--NavBar-->
+        <nav class="nav nav-pills nav-justified">
+            <a class="nav-item nav-link" href="#">
+                <img src="personal.png" height="20"/>Staff
+            </a>
+
+            <a class="nav-item nav-link active" href="#">
+                <img src="branch.png" height="30"/>Branches
+            </a>
+            <a class="nav-item nav-link" href="#">
+                <img src="order.png" height="30"/>Orders
+            </a>
+            <a class="nav-item nav-link" href="#">
+                <img src="shoe.png" height="30"/>Stock
+            </a>
+        </nav>
+
+        <!--row between new and search bar-->
+        <div class="row justify-content-center m-3">
+        </div>
+
+        <!--row between new and search bar-->
+        <div class="row justify-content-center m-3">
+        </div>
+
+    <!--table with filter-->
+        <input class="form-control" id="myInput" type="text" placeholder="Search..">
+  <br>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Branch ID</th>
+        <th>City</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Phone</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody id="myTable">
+      <tr>
+        <td>G002</td>
+        <td>Glasgow</td>
+        <td>Glasgow2</td>
+        <td>King Street, 3</td>
+        <td>0751778956</td>
+        <td>G002@run500.co.uk</td>
+      </tr>
+      <tr>
+        <td>E013</td>
+        <td>Edinburgh</td>
+        <td>Edinb13</td>
+        <td>Princess street, 85</td>
+        <td>01382 244554</td>
+        <td>E013@run500.co.uk</td>
+      </tr>
+      <tr>
+        <td>G015</td>
+        <td>Glasgow</td>
+        <td>Glasgow2</td>
+        <td>Queen street, 45</td>
+        <td>1800123456</td>
+        <td>G015@run500.co.uk</td>
+      </tr>
+      <tr>
+        <td>D01</td>
+        <td>Dundee</td>
+        <td>Dundee01</td>
+        <td>High Street, 41</td>
+        <td>0789115025</td>
+        <td>D01@run500.co.uk</td>
+      </tr>
+    </tbody>
+  </table>
+  
+
+        <!--Some space to make it look better-->
+        <div class="row justify-content-center m-3">
+        </div>
+        <div class="row justify-content-center m-3">
+        </div>
+
+    </div>
+    <!--End container-->
+
+
+
+
+
+
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+
+
+
+</html>
