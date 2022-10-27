@@ -61,11 +61,10 @@
             <a class="nav-item nav-link active" href="#">
                 <img src="personal.png" height="20"/>Staff
             </a>
-
-            <a class="nav-item nav-link" href="#">
+            <a class="nav-item nav-link active" href="#">
                 <img src="branch.png" height="30"/>Branches
             </a>
-            <a class="nav-item nav-link" href="#">
+            <a class="nav-item nav-link active" href="#">
                 <img src="order.png" height="30"/>Orders
             </a>
             <a class="nav-item nav-link" href="#">
@@ -131,6 +130,95 @@
         <div class="row justify-content-center m-3">
         </div>
         <div class="row justify-content-center m-3">
+        </div>
+
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>Branch ID</th>
+              <th>City</th>
+              <th>Name</th>
+              <th>Address</th>
+              <th>Phone</th>
+              <th>Email</th>
+            </tr>
+          </thead>
+          <tbody id="myTable">
+            <tr>
+              <td>G002</td>
+              <td>Glasgow</td>
+              <td>Glasgow2</td>
+              <td>King Street, 3</td>
+              <td>0751778956</td>
+              <td>G002@run500.co.uk</td>
+            </tr>
+            <tr>
+              <td>E013</td>
+              <td>Edinburgh</td>
+              <td>Edinb13</td>
+              <td>Princess street, 85</td>
+              <td>01382 244554</td>
+              <td>E013@run500.co.uk</td>
+            </tr>
+            <tr>
+              <td>G015</td>
+              <td>Glasgow</td>
+              <td>Glasgow2</td>
+              <td>Queen street, 45</td>
+              <td>1800123456</td>
+              <td>G015@run500.co.uk</td>
+            </tr>
+            <tr>
+              <td>D01</td>
+              <td>Dundee</td>
+              <td>Dundee01</td>
+              <td>High Street, 41</td>
+              <td>0789115025</td>
+              <td>D01@run500.co.uk</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="row">
+          <div class="col-3">
+            <img src="shoePic.jpg" style="max-width:70%; ">
+            <h6>Item num: Asc2556</h6>
+          </div>
+          <div class="col-3">
+            <h6>Supplier: ASICS EdinSup</h6>
+            <h6>Last Order: 27/04/2021</h6>
+            <button type="button" class="btn btn-outline-primary" style="margin-top: 20;">See Last Order</button>
+  
+            <button type="button" class="btn btn-outline-primary" style="margin-top: 20;">Place New Order</button>
+          </div>
+          <div class="col-6">
+  
+            <h6>Stock:</h6>
+            <!--Table with the stocks-->
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Branch</th>
+                  <th scope="col">Stock</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Glasgow G15</th>
+                  <td>27</td>
+                </tr>
+                <tr>
+                  <th scope="row">Glasgow G03</th>
+                  <td>5</td>
+                </tr>
+                <tr>
+                  <th scope="row">Edinburgh Edi013</th>
+                  <td>49</td>
+                </tr>
+                <tr>
+                  <th scope="row">Dundee D001</th>
+                  <td>2</td>
+                </tr>
+          </div>
         </div>
 
     </div>
