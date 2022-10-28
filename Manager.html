@@ -2,224 +2,181 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://kit.fontawesome.com/84a612beee.js" crossorigin="anonymous"></script>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Manager Veiw</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- our stylesheet -->
+  <link rel="stylesheet" href="style.css">
+
+
+  <!-- bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/84a612beee.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <div class="container">
-        <!--Class to center the logo-->
-        <div class="row">
-            <img src="logo.png" class="img-fluid" alt="logo">
-        </div>
+  <div class="container">
+    <!--Class to center the logo-->
+    <div class="row">
+      <img class="logo" src="logo.png" alt="logo">
+    </div>
 
-        <!--Search bar-->
-        <div class="row">
-            <div class="col">
-                <input type="text" class="form-control" placeholder="Item Number" aria-label="Item Number">
-            </div>
-            <div class="col">
-                <select class="form-control form-control-sm">
-                    <option>Select Brand</option>
-                    <option>Nike</option>
-                </select>
+    <!--row between new and nav bar-->
+    <div class="row justify-content-left m-3">
+      <h2 style="font-weight: bold; padding-bottom: 2%;">Manager: Bob</h2>
+    </div>
 
-            </div>
-            <div class="col">
-                <select class="form-control form-control-sm">
-                    <option>Select size</option>
-                    <option>Test</option>
-                </select>
-            </div>
+    <h3 style="padding-top: 2%;">Staff search</h3>
 
-            <div class="col">
-                <select class="form-control form-control-sm">
-                    <option>Select Price Range</option>
-                    <option>$0-$99</option>
-                </select>
-            </div>
+    <div class="row">
 
+      <div class="col">
+        <input type="text" class="form-control" placeholder="First Name" aria-label="Item Number">
+      </div>
 
-            <!-- The search button -->
-            <button type="button" class="btn btn-outline-primary btn-sm">Search</button>
-        </div>
+      <div class="col">
+        <input type="text" class="form-control" placeholder="Last Name" aria-label="Item Number">
+      </div>
 
+      <div class="col">
+        <input type="text" class="form-control" placeholder="Personal Email" aria-label="Item Number">
+      </div>
 
-        <!--row between new and search bar-->
-        <div class="row justify-content-center m-3">
-        </div>
+      <div class="col">
+        <input type="text" class="form-control" placeholder="Phone" aria-label="Item Number">
+      </div>
 
-        <!--NavBar-->
-        <nav class="nav nav-pills nav-justified">
-            <a class="nav-item nav-link active" href="#">
-                <img src="personal.png" height="20"/>Staff
-            </a>
-            <a class="nav-item nav-link active" href="#">
-                <img src="branch.png" height="30"/>Branches
-            </a>
-            <a class="nav-item nav-link active" href="#">
-                <img src="order.png" height="30"/>Orders
-            </a>
-            <a class="nav-item nav-link" href="#">
-                <img src="shoe.png" height="30"/>Stock
-            </a>
-        </nav>
+      <!-- The search button -->
+      <button type="button" class="btn btn-outline-primary btn-sm">Search</button>
+    </div>
 
-        <!--row between new and search bar-->
-        <div class="row justify-content-center m-3">
-        </div>
-
-        <!--row between new and search bar-->
-        <div class="row justify-content-center m-3">
-        </div>
 
     <!--table with filter-->
-        <input class="form-control" id="myInput" type="text" placeholder="Search..">
-  <br>
-  <table class="table table-bordered table-striped">
-    <thead>
-      <tr>
-        <th>Firstname</th>
-        <th>Lastname</th>
-        <th>Email</th>
-        <th>Phone</th>
-        <th>Branch</th>
-      </tr>
-    </thead>
-    <tbody id="myTable">
-      <tr>
-        <td>John</td>
-        <td>Doe</td>
-        <td>john@example.com</td>
-        <td>0751778956</td>
-        <td>Edinburgh</td>
-      </tr>
-      <tr>
-        <td>Mary</td>
-        <td>Moe</td>
-        <td>mary@mail.com</td>
-        <td>01382 244554</td>
-        <td>Glasgow (Br1)</td>
-      </tr>
-      <tr>
-        <td>July</td>
-        <td>Dooley</td>
-        <td>july@greatstuff.com</td>
-        <td>1800123456</td>
-        <td> Glasgow (Br3)</td>
-      </tr>
-      <tr>
-        <td>Anja</td>
-        <td>Ravendale</td>
-        <td>a_r@test.com</td>
-        <td>0789115025</td>
-        <td>Dundee</td>
-      </tr>
-    </tbody>
-  </table>
-  
+    <br>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Firstname</th>
+          <th>Lastname</th>
+          <th>Email</th>
+          <th>Phone</th>
+        </tr>
+      </thead>
+      <tbody id="myTable">
+        <tr>
+          <td>John</td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+          <td>0751778956</td>
+        </tr>
+        <tr>
+          <td>Mary</td>
+          <td>Moe</td>
+          <td>mary@mail.com</td>
+          <td>01382 244554</td>
+        </tr>
+        <tr>
+          <td>July</td>
+          <td>Dooley</td>
+          <td>july@greatstuff.com</td>
+          <td>1800123456</td>
+        </tr>
+        <tr>
+          <td>Anja</td>
+          <td>Ravendale</td>
+          <td>a_r@test.com</td>
+          <td>0789115025</td>
+        </tr>
+      </tbody>
+    </table>
 
-        <!--Some space to make it look better-->
-        <div class="row justify-content-center m-3">
-        </div>
-        <div class="row justify-content-center m-3">
-        </div>
 
-        <table class="table table-bordered table-striped">
+    <!-- place order to supplier -->
+    <h3>Place order to supplier</h3>
+    <div class="row">
+      <div class="col">
+        todo
+      </div>
+    </div>
+
+
+
+
+    <h3 style="padding-top:3%;">Stock search</h3>
+
+    <!--Search bar-->
+    <div class="row">
+
+      <div class="col">
+        <input type="text" class="form-control" placeholder="Item Number" aria-label="Item Number">
+      </div>
+      <div class="col">
+        <select class="form-control form-control-sm">
+          <option>Select Brand</option>
+          <option>Nike</option>
+        </select>
+
+      </div>
+      <div class="col">
+        <select class="form-control form-control-sm">
+          <option>Select size</option>
+          <option>Test</option>
+        </select>
+      </div>
+
+      <div class="col">
+        <select class="form-control form-control-sm">
+          <option>Select Price Range</option>
+          <option>$0-$99</option>
+        </select>
+      </div>
+
+
+      <!-- The search button -->
+      <button type="button" class="btn btn-outline-primary btn-sm">Search</button>
+    </div>
+
+    <div style="padding-top: 2%; padding-bottom:5%;" class="row">
+
+      <div style="padding-left: 6%;" class="col">
+        <img style="height: 90%;" src="shoePic.jpg" style="max-width:70%; ">
+
+      </div>
+
+
+
+      <div style="padding-top: 6%" class="col">
+
+        <h6>Stock:</h6>
+        <!--Table with the stocks-->
+        <table class="table">
           <thead>
             <tr>
-              <th>Branch ID</th>
-              <th>City</th>
-              <th>Name</th>
-              <th>Address</th>
-              <th>Phone</th>
-              <th>Email</th>
+              <th scope="col">Branch</th>
+              <th scope="col">Stock</th>
             </tr>
           </thead>
-          <tbody id="myTable">
+          <tbody>
             <tr>
-              <td>G002</td>
-              <td>Glasgow</td>
-              <td>Glasgow2</td>
-              <td>King Street, 3</td>
-              <td>0751778956</td>
-              <td>G002@run500.co.uk</td>
+              <th scope="row">Glasgow</th>
+              <td>27</td>
+            </tr>
+
+            <th scope="row">Edinburgh</th>
+            <td>49</td>
             </tr>
             <tr>
-              <td>E013</td>
-              <td>Edinburgh</td>
-              <td>Edinb13</td>
-              <td>Princess street, 85</td>
-              <td>01382 244554</td>
-              <td>E013@run500.co.uk</td>
+              <th scope="row">Dundee</th>
+              <td>2</td>
             </tr>
-            <tr>
-              <td>G015</td>
-              <td>Glasgow</td>
-              <td>Glasgow2</td>
-              <td>Queen street, 45</td>
-              <td>1800123456</td>
-              <td>G015@run500.co.uk</td>
-            </tr>
-            <tr>
-              <td>D01</td>
-              <td>Dundee</td>
-              <td>Dundee01</td>
-              <td>High Street, 41</td>
-              <td>0789115025</td>
-              <td>D01@run500.co.uk</td>
-            </tr>
-          </tbody>
         </table>
-        <div class="row">
-          <div class="col-3">
-            <img src="shoePic.jpg" style="max-width:70%; ">
-            <h6>Item num: Asc2556</h6>
-          </div>
-          <div class="col-3">
-            <h6>Supplier: ASICS EdinSup</h6>
-            <h6>Last Order: 27/04/2021</h6>
-            <button type="button" class="btn btn-outline-primary" style="margin-top: 20;">See Last Order</button>
-  
-            <button type="button" class="btn btn-outline-primary" style="margin-top: 20;">Place New Order</button>
-          </div>
-          <div class="col-6">
-  
-            <h6>Stock:</h6>
-            <!--Table with the stocks-->
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">Branch</th>
-                  <th scope="col">Stock</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">Glasgow G15</th>
-                  <td>27</td>
-                </tr>
-                <tr>
-                  <th scope="row">Glasgow G03</th>
-                  <td>5</td>
-                </tr>
-                <tr>
-                  <th scope="row">Edinburgh Edi013</th>
-                  <td>49</td>
-                </tr>
-                <tr>
-                  <th scope="row">Dundee D001</th>
-                  <td>2</td>
-                </tr>
-          </div>
-        </div>
+
+        <h6>Item num: Asc2556</h6>
+        <h6>Supplier: ASICS EdinSup</h6>
+        <h6>Last Order: 27/04/2021</h6>
+      </div>
 
     </div>
     <!--End container-->
@@ -229,28 +186,22 @@
 
 
 
-<script>
-$(document).ready(function(){
-  $("#myInput").on("keyup", function() {
-    var value = $(this).val().toLowerCase();
-    $("#myTable tr").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-    });
-  });
-});
-</script>
+    <script>
+      $(document).ready(function () {
+        $("#myInput").on("keyup", function () {
+          var value = $(this).val().toLowerCase();
+          $("#myTable tr").filter(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+          });
+        });
+      });
+    </script>
 
 
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 
 
