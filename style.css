@@ -1,13 +1,44 @@
+/* Text */
+.sectionTitle {
+    padding-top: 3%;
+    padding-left: 2%;
+    font-weight: bold;
+    font-size: 28px;
+}
+
+#staffName {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Images */
 .logo {
-    width: 500px;
+    width: 450px;
     display: block;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 4%;
 }
 
 #cart {
     margin-top: 2%;
     max-width: 50;
     max-height: 30;
+}
+
+/* Tables */
+#staffSearchTable {
+    margin-top: 2%;
+}
+
+.logoorderRow {
+    margin-top: 6%;
+}
+
+/* Cards */
+.shoeResult {
+    width: 30%;
+}
+
+#returnedShoes {
+    padding-top: 1.5%;
 }
