@@ -26,6 +26,13 @@
 }
 
 /* Tables */
+#staffSearchTable {
+    margin-top: 2%;
+}
+
+.logoorderRow {
+    margin-top: 6%;
+}
 
 /* Cards */
 .shoeResult {
