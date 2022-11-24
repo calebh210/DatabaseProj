@@ -36,38 +36,40 @@
             <h2 class="sectionTitle">Shoe Search</h2>
         </div>
 
-        <!-- user options -->
-        <div class="row">
+        <form action="">
+            <!-- user options -->
+            <div class="row">
 
-            <!-- brand -->
-            <div class="col">
-                <select class="form-control form-control-sm">
-                    <option>Select Brand</option>
-                </select>
+                <!-- brand -->
+                <div class="col">
+                    <select class="form-control form-control-sm">
+                        <option>Select Brand</option>
+                    </select>
 
+                </div>
+
+                <!-- size -->
+                <div class="col">
+                    <select class="form-control form-control-sm">
+                        <option>Select size</option>
+                    </select>
+                </div>
+
+                <!-- price range -->
+                <div class="col">
+                    <select class="form-control form-control-sm">
+                        <option>Select Price Range</option>
+                        <option>£0-£30</option>
+                        <option>£30-£50</option>
+                        <option>£50-£100</option>
+                        <option>£100+</option>
+                    </select>
+                </div>
+
+                <!-- search -->
+                <button type="button" class="btn btn-outline-primary btn-sm">Search</button>
             </div>
-
-            <!-- size -->
-            <div class="col">
-                <select class="form-control form-control-sm">
-                    <option>Select size</option>
-                </select>
-            </div>
-
-            <!-- price range -->
-            <div class="col">
-                <select class="form-control form-control-sm">
-                    <option>Select Price Range</option>
-                    <option>£0-£30</option>
-                    <option>£30-£50</option>
-                    <option>£50-£100</option>
-                    <option>£100+</option>
-                </select>
-            </div>
-
-            <!-- search -->
-            <button type="button" class="btn btn-outline-primary btn-sm">Search</button>
-        </div>
+        </form>
 
         <!-- results from search -->
         <div class="row">
