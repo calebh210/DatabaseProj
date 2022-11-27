@@ -16,6 +16,8 @@ if (isset($_POST["search"])) {
 
     if (!$search->emptyInput()) {
         $search->searchStaff();
+
+        //got here need to print results now
     }
 
     // back to the front page
