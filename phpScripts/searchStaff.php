@@ -1,4 +1,6 @@
 <?php
+
+// provides functionality for connection to database
 include "Database.class.php";
 
 class StaffSearch extends Database
@@ -21,19 +23,8 @@ class StaffSearch extends Database
         $this->staffDob = $staffDob;
     }
 
-    /**
-     * Checks if all the inputted values are empty
-     */
-    public function emptyInput()
-    {
-        if (empty($this->staffID) && empty($this->staffFirstName) && empty($this->staffLastName) && empty($this->staffEmail) && empty($this->staffPhoneNum) && empty($this->staffDob)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
 
-    public function searchStaff()
+    public function searchStaffTable()
     {
         // prepared query (? as placeholders, stops sql injection)
         $sqlQuery = "SELECT * FROM staff WHERE staff_id = ? OR first_name = ? OR sur_name = ? OR email = ? OR phone_num = ? OR date_of_birth = ?;";
@@ -41,12 +32,30 @@ class StaffSearch extends Database
         $stmt = $this->connect()->prepare($sqlQuery);
 
         if (!$stmt->execute(array($this->staffID, $this->staffFirstName, $this->staffLastName, $this->staffEmail, $this->staffPhoneNum, $this->staffDob))) {
-
             $stmt = null;
-            header("location: ../Manager.php?error=stmtfailed");
             exit();
+        } else {
+            $data = $stmt->fetchAll();
         }
 
-        return $stmt;
+        $data = 1;
+        return $data;
     }
 }
+
+// Grabbing user data
+$staffID = $_POST["staffID"];
+$staffFirstName = $_POST["staffFirstName"];
+$staffLastName = $_POST["staffLastName"];
+$staffEmail = $_POST["staffEmail"];
+$stafPhoneNum = $_POST["stafPhoneNum"];
+$staffDob = $_POST["staffDob"];
+
+// init searcher object
+$search = new StaffSearch($staffID, $staffFirstName, $staffLastName, $staffEmail, $stafPhoneNum, $staffDob);
+
+// performing search
+$data = $search->searchStaffTable();
+
+// send the data back
+echo json_encode($data);
