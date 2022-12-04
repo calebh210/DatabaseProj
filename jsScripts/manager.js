@@ -1,3 +1,6 @@
+/**
+ * Provides all the structures and functions to search for staff members
+ */
 class StaffSearch {
 
     constructor() {
@@ -47,7 +50,7 @@ class StaffSearch {
 
         var returned;
 
-        // ajac call to the php 
+        // ajax call to the php 
         $.ajax({
             async: false,
             cache: false,
@@ -67,38 +70,77 @@ class StaffSearch {
             }
         });
 
-        // prints returned data
-        // // TODO: REMOVE, HERE FOR TESTING
-        // console.log(returned);
-        // console.log(typeof returned);
-
         return returned
     }
 
+
     /**
-     * Generates html table and appends to DOM
+     * Creates and appends the staff search results table
+     * 
+     * https://www.geeksforgeeks.org/how-to-convert-json-data-to-a-html-table-using-javascript-jquery/
+     * @param {*} list 
      */
-    appendTable(tableObject) {
+    constructTable(list) {
 
-        alert(tableObject[0]['first_name']);
+        // // Getting the all column names
+        var cols = this.headers(list, "#staffSearchResults");
 
-        text = "<table border='1'>"
-        counter = 0
-        for (let x in tableObject) {
-            counter++
-            // text += "<tr><td>" + tableObject[x].name + "</td></tr>";
+        // Traversing the JSON data
+        for (var i = 0; i < list.length; i++) {
+            var row = $('<tr/>');
+            for (var colIndex = 0; colIndex < cols.length; colIndex++) {
+                var val = list[i][cols[colIndex]];
+
+                // If there is any key, which is matching
+                // with the column name
+                if (val == null) val = "";
+                row.append($('<td/>').html(val));
+            }
+
+            // Adding each row to the table
+            $('#staffSearchResults').append(row);
         }
-        alert(counter)
-        // text += "</table>"
-        // document.getElementById("staffSearchResults").innerHTML = text;
     }
+
+    /**
+     * Returns the columns of a table
+     * 
+     * https://www.geeksforgeeks.org/how-to-convert-json-data-to-a-html-table-using-javascript-jquery/
+     * @param {*} list 
+     * @param {*} selector 
+     * @returns 
+     */
+    headers(list, selector) {
+        var columns = [];
+        var header = $('<tr/>');
+
+        for (var i = 0; i < list.length; i++) {
+            var row = list[i];
+
+            for (var k in row) {
+                if ($.inArray(k, columns) == -1) {
+                    columns.push(k);
+
+                    // Creating the header
+                    header.append($('<th/>').html(k));
+                }
+            }
+        }
+        return columns;
+    }
+}
+
+class SupplierOrder {
+
 }
 
 // variable holding the form
 var staffSearchSubmit = document.getElementById('submitStaffSearch');
-
 // Event listener that listens for submit event
 staffSearchSubmit.addEventListener("click", () => {
+
+    // clears the tables contents
+    $("#staffSearchResults tr").remove()
 
     // new staff search object
     const searchStaff = new StaffSearch();
@@ -111,7 +153,16 @@ staffSearchSubmit.addEventListener("click", () => {
         resultsArray = searchStaff.searchDatabase();
 
         // appending table to the DOM
-        searchStaff.appendTable(resultsArray);
+        searchStaff.constructTable(resultsArray);
+    }
+
+
+    // clears the input fields
+    var elements = document.getElementById("staffSearchForm");
+    for (var ii = 0; ii < elements.length; ii++) {
+        if (elements[ii].type == "text" || elements[ii].type == "date") {
+            elements[ii].value = "";
+        }
     }
 
 
