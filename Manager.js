@@ -68,16 +68,30 @@ class StaffSearch {
         });
 
         // prints returned data
-        console.log(returned);
-        console.log(typeof returned);
+        // // TODO: REMOVE, HERE FOR TESTING
+        // console.log(returned);
+        // console.log(typeof returned);
+
+        return returned
     }
 
-    // creates the html from a search 
-    createHtml() {
-        resultArray = JSON.parse(this.searchResult);
-        console.log(resultArray);
-    }
+    /**
+     * Generates html table and appends to DOM
+     */
+    appendTable(tableObject) {
 
+        alert(tableObject[0]['first_name']);
+
+        text = "<table border='1'>"
+        counter = 0
+        for (let x in tableObject) {
+            counter++
+            // text += "<tr><td>" + tableObject[x].name + "</td></tr>";
+        }
+        alert(counter)
+        // text += "</table>"
+        // document.getElementById("staffSearchResults").innerHTML = text;
+    }
 }
 
 // variable holding the form
@@ -94,8 +108,10 @@ staffSearchSubmit.addEventListener("click", () => {
     if (!searchStaff.allFieldsEmpty()) {
 
         // querying database
-        searchStaff.searchDatabase();
-        searchStaff.createHtml();
+        resultsArray = searchStaff.searchDatabase();
+
+        // appending table to the DOM
+        searchStaff.appendTable(resultsArray);
     }
 
 

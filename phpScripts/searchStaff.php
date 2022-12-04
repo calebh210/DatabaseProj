@@ -38,7 +38,6 @@ class StaffSearch extends Database
             $data = $stmt->fetchAll();
         }
 
-        $data = 1;
         return $data;
     }
 }
