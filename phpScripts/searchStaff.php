@@ -23,11 +23,10 @@ class StaffSearch extends Database
         $this->staffDob = $staffDob;
     }
 
-
     public function searchStaffTable()
     {
         // prepared query (? as placeholders, stops sql injection)
-        $sqlQuery = "SELECT * FROM staff WHERE staff_id = ? OR first_name = ? OR sur_name = ? OR email = ? OR phone_num = ? OR date_of_birth = ?;";
+        $sqlQuery = "SELECT * FROM staff WHERE staff_id = ? OR first_name = ? OR surname = ? OR email = ? OR phone_num = ? OR date_of_birth = ?;";
 
         $stmt = $this->connect()->prepare($sqlQuery);
 

@@ -78,6 +78,7 @@ loginSubmit.addEventListener("click", () => {
         staffData = login.searchDatabase();
 
         if (staffData != "") {
+
             // not secure, i know...
             login.passsword = staffData[0]['first_name'].concat(staffData[0]['staff_id']);
             login.role = staffData[0]['role']
@@ -90,12 +91,13 @@ loginSubmit.addEventListener("click", () => {
                 window.location.href = "./staff.html";
             }
 
+        } else {
+
+            paragraph.textContent = "invalid username or password";
+            paragraph.style.cssText += 'color:red;'
+            errorDiv.append(paragraph);
+
         }
-
-        paragraph.textContent = "invalid username or password";
-        paragraph.style.cssText += 'color:red;'
-        errorDiv.append(paragraph);
-
     }
 
 
@@ -106,6 +108,5 @@ loginSubmit.addEventListener("click", () => {
             elements[ii].value = "";
         }
     }
-
 
 })
