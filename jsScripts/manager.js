@@ -1,3 +1,8 @@
+// the first name of the logged on manager
+staffTag = document.getElementById("staffName");
+firstName = window.location.search.split('?')[1];
+
+
 /**
  * Provides all the structures and functions to search for staff members
  */
@@ -7,9 +12,6 @@ class StaffSearch {
         this.staffID;
         this.staffFirstName;
         this.staffLastName;
-        this.staffEmail;
-        this.stafPhoneNum;
-        this.staffDob;
         this.searchResult
     }
 
@@ -20,9 +22,6 @@ class StaffSearch {
         this.staffID = document.getElementById('staffID').value;
         this.staffFirstName = document.getElementById('staffFirstName').value;
         this.staffLastName = document.getElementById('staffLastName').value;
-        this.staffEmail = document.getElementById('staffEmail').value;
-        this.stafPhoneNum = document.getElementById('stafPhoneNum').value;
-        this.staffDob = document.getElementById('staffDob').value;
     }
 
 
@@ -33,7 +32,7 @@ class StaffSearch {
     allFieldsEmpty() {
 
         // checks all fields to check if they are null
-        if (this.staffID == null && this.staffFirstName == null && this.staffFirstName == null && this.staffLastName == null && this.stafPhoneNum == null && this.staffDob == null) {
+        if (this.staffID == null && this.staffFirstName == null == null && this.staffLastName == null) {
 
             return true;
         }
@@ -61,9 +60,6 @@ class StaffSearch {
                 staffID: this.staffID,
                 staffFirstName: this.staffFirstName,
                 staffLastName: this.staffLastName,
-                staffEmail: this.staffEmail,
-                stafPhoneNum: this.stafPhoneNum,
-                staffDob: this.staffDob
             },
             success: function (data) {
                 returned = data;
@@ -130,13 +126,16 @@ class StaffSearch {
     }
 }
 
-class SupplierOrder {
 
-}
+
+/**
+ * Staff search functionality
+ */
 
 // variable holding the form
 var staffSearchSubmit = document.getElementById('submitStaffSearch');
-// Event listener that listens for submit event
+
+// Event listener that listens for staff search
 staffSearchSubmit.addEventListener("click", () => {
 
     // clears the tables contents
@@ -164,6 +163,143 @@ staffSearchSubmit.addEventListener("click", () => {
             elements[ii].value = "";
         }
     }
+
+
+})
+
+
+/**
+ * Class holding all the functionality to place an order to the supplier
+ */
+class SupplierOrder {
+
+    constructor() {
+
+        this.staffFirstName = firstName;
+        this.stockItems
+        this.suppliers
+
+    }
+
+    getSuppliers() {
+        var returned;
+
+        // ajax call to the php 
+        $.ajax({
+            async: false,
+            cache: false,
+            url: "phpScripts/supplierSearch.php",
+            type: "POST",
+            dataType: "json",
+            success: function (data) {
+                returned = data;
+            }
+        });
+
+        this.suppliers = returned
+    }
+    appendSuppliers() {
+
+        var dropdownItems = document.getElementById('supplier');
+
+        // loops through all the stock items and appends them to the drop down list
+        for (var i = 0; i < this.suppliers.length; i++) {
+
+            var item = this.suppliers[i]
+            var opt = document.createElement("option");
+            opt.value = item['item_id'];
+            opt.innerHTML = '(Id ' + item['supplier_id'] + '): ' + item['supplier_name']
+            dropdownItems.appendChild(opt);
+        }
+
+    }
+
+    /**
+     * Gets all stock items from the database
+     */
+    getAllStockItems() {
+        var returned;
+
+        // ajax call to the php 
+        $.ajax({
+            async: false,
+            cache: false,
+            url: "phpScripts/stockItemSearch.php",
+            type: "POST",
+            dataType: "json",
+            success: function (data) {
+                returned = data;
+            }
+        });
+
+        this.stockItems = returned
+    }
+
+    /**
+     * Appends all stock items to the drop down selection
+     */
+    appendStockItems() {
+
+        var dropdownItems = document.getElementById('stockItems');
+
+        // loops through all the stock items and appends them to the drop down list
+        for (var i = 0; i < this.stockItems.length; i++) {
+
+            var item = this.stockItems[i]
+            var opt = document.createElement("option");
+            opt.value = item['item_id'];
+            opt.innerHTML = item['Name']
+            opt.innerHTML = item['item_id'];
+            dropdownItems.appendChild(opt);
+        }
+
+    }
+
+    retrieveUserOptions() {
+
+        // getting the input values
+        var itemId = document.getElementById('stockItems').value;
+        var quantity = document.getElementById("itemQuantity").value;
+
+        if (itemId != '' && quantity != '') {
+            this.insertSupplierOrder()
+        } else {
+            alert('please select valid options')
+        }
+
+
+    }
+}
+
+var supplierOrderObj = new SupplierOrder();
+
+
+/**
+ * Everything that happens when the page loads
+ */
+window.addEventListener('load', function () {
+
+    // adds the staff name to the dom
+    $(staffTag).text("Manager: ".concat(firstName))
+
+    // retrieves all stock items from the database
+    supplierOrderObj.getSuppliers()
+    supplierOrderObj.appendSuppliers()
+    supplierOrderObj.getAllStockItems()
+    supplierOrderObj.appendStockItems()
+})
+
+/**
+ * Functionality for the supplier order
+ */
+
+// variable holding the form
+var staffSearchSubmit = document.getElementById('addToOrderBtn');
+
+// Event listener for button click of add to order
+staffSearchSubmit.addEventListener("click", () => {
+
+    userOption = supplierOrderObj.retrieveUserOptions()
 
 
 })

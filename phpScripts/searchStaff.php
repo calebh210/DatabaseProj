@@ -9,28 +9,22 @@ class StaffSearch extends Database
     private $staffID;
     private $staffFirstName;
     private $staffLastName;
-    private $staffEmail;
-    private $staffPhoneNum;
-    private $staffDob;
 
-    public function __construct($staffID, $staffFirstName, $staffLastName, $staffEmail, $staffPhoneNum, $staffDob)
+    public function __construct($staffID, $staffFirstName, $staffLastName)
     {
         $this->staffID = $staffID;
         $this->staffFirstName = $staffFirstName;
         $this->staffLastName = $staffLastName;
-        $this->staffEmail = $staffEmail;
-        $this->staffPhoneNum = $staffPhoneNum;
-        $this->staffDob = $staffDob;
     }
 
     public function searchStaffTable()
     {
         // prepared query (? as placeholders, stops sql injection)
-        $sqlQuery = "SELECT * FROM staff WHERE staff_id = ? OR first_name = ? OR surname = ? OR email = ? OR phone_num = ? OR date_of_birth = ?;";
+        $sqlQuery = "CALL staff_search(?,?,?)";
 
         $stmt = $this->connect()->prepare($sqlQuery);
 
-        if (!$stmt->execute(array($this->staffID, $this->staffFirstName, $this->staffLastName, $this->staffEmail, $this->staffPhoneNum, $this->staffDob))) {
+        if (!$stmt->execute(array($this->staffID, $this->staffFirstName, $this->staffLastName))) {
             $stmt = null;
             exit();
         } else {
@@ -45,12 +39,8 @@ class StaffSearch extends Database
 $staffID = $_POST["staffID"];
 $staffFirstName = $_POST["staffFirstName"];
 $staffLastName = $_POST["staffLastName"];
-$staffEmail = $_POST["staffEmail"];
-$stafPhoneNum = $_POST["stafPhoneNum"];
-$staffDob = $_POST["staffDob"];
-
 // init searcher object
-$search = new StaffSearch($staffID, $staffFirstName, $staffLastName, $staffEmail, $stafPhoneNum, $staffDob);
+$search = new StaffSearch($staffID, $staffFirstName, $staffLastName);
 
 // performing search
 $data = $search->searchStaffTable();

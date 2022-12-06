@@ -85,10 +85,10 @@ loginSubmit.addEventListener("click", () => {
             auth = login.verifyCredentials(staffData[0])
 
             if (auth && login.role == 'manager')
-                window.location.href = "./manager.html";
+                window.location.href = "./manager.php?".concat(staffData[0]['first_name']);
 
             else if (auth) {
-                window.location.href = "./staff.html";
+                window.location.href = "./staff.php?".concat(staffData[0]['first_name']);
             }
 
         } else {
