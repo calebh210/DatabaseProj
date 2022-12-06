@@ -28,7 +28,7 @@
 
     <!-- manager currently logged in -->
     <div class="row justify-content-left m-3">
-      <h5 id="staffName">Manager: Inject code here</h5>
+      <h5 id="staffName"></h5>
     </div>
 
     <!-- Staff search Title -->
@@ -55,21 +55,6 @@
         <!-- last name -->
         <div class="col">
           <input type="text" class="form-control" id="staffLastName" placeholder="Last Name">
-        </div>
-
-        <!-- Email -->
-        <div class="col">
-          <input type="text" class="form-control" id="staffEmail" placeholder="Email">
-        </div>
-
-        <!-- Phone no-->
-        <div class="col">
-          <input type="text" class="form-control" id="stafPhoneNum" placeholder="Phone Num">
-        </div>
-
-        <!-- DOB -->
-        <div class="col">
-          <input type="date" class="form-control" id="staffDob" placeholder="Date of Birth">
         </div>
 
         <!-- ADD FUNCTIONALITY TO THE BUTTON TO INITIATE THE SEARCH -->
@@ -124,27 +109,29 @@
     <!-- input values for the order items -->
     <div class="row">
 
-      <!-- Drop down menu with all the stock -->
+      <!-- Drop down menu with all the suppliers -->
       <div class="col">
-        <select class="form-control form-control-sm">
-          <option>inject stock items here</option>
+        <select id="supplier" class="form-control form-control-sm">
+          <option value="none" selected disabled hidden>Select a supplier</option>
         </select>
       </div>
 
-      <!-- Item number -->
+      <!-- Drop down menu with all the stock -->
       <div class="col">
-        <input type="text" class="form-control" placeholder="Item Number" aria-label="Item Number">
+        <select id="stockItems" class="form-control form-control-sm">
+          <option value="none" selected disabled hidden>Select a stock item</option>
+        </select>
       </div>
 
       <!-- Quantity -->
       <div class="col">
-        <input type="text" class="form-control" placeholder="Item Quantity" aria-label="Enter Quantity">
+        <input type="number" id="itemQuantity" class="form-control" placeholder="Item Quantity" aria-label="Enter Quantity">
       </div>
     </div>
 
     <!-- Add to order button -->
     <div class="row justify-content-center">
-      <button type="button" class="btn btn-outline-success btn-lg m-3">Add To Order</button>
+      <button id="addToOrderBtn" type="button" class="btn btn-outline-success btn-lg m-3">Add To Order</button>
     </div>
 
     <!-- The table that displays the result of a staff search -->
@@ -185,7 +172,7 @@
     </div>
 
 
-    <!-- supplier order title -->
+    <!--stock search title -->
     <div class="row justify-content-left">
       <h2 class="sectionTitle">Stock Search</h2>
     </div>
