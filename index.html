@@ -14,6 +14,7 @@
     <!-- bootstrap -->
     <link rel="stylesheet" href="">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://kit.fontawesome.com/84a612beee.js" crossorigin="anonymous"></script>
 </head>
 
@@ -23,7 +24,9 @@
     <div class="container">
 
         <!-- logo and cart images -->
-        <img id="cart" src="resources/cart.png" class="rounded float-rigth" alt="cart">
+        <i class="fa badge rounded float-right mt-2" style="font-size:32px" id= 'cart' onclick="checkout()" value= 0  > &#xf07a;</i>
+
+        <!-- <img id="cart" src="resources/cart.png" class="rounded float-rigth" alt="cart" value=5> -->
         <img class="logo" src="resources/logo.png" alt="logo">
 
         <!-- Welcome message -->
@@ -42,82 +45,127 @@
 
                 <!-- brand -->
                 <div class="col">
-                    <select class="form-control form-control-sm">
+                    <select class="form-control form-control-sm" id="brand">
                         <option>Select Brand</option>
+                        <option value="nike">Nike</option>
+                        <option value = "puma">Puma</option>
+                        <option value = "NewBalance">New Balance</option>
+                        <option value = "Asics">Asics</option>
+                        <option value = "Brooks">Brooks</option>
+                        <option value = "AllStar">AllStar</option>
+                        <option value = "Sketches">Sketchers</option>
+
                     </select>
 
                 </div>
 
                 <!-- size -->
                 <div class="col">
-                    <select class="form-control form-control-sm">
+                    <!-- <select class="form-control form-control-sm">
                         <option>Select size</option>
-                    </select>
+                    </select> -->
+                    <input type="text" class="form-control" id="size">
                 </div>
 
                 <!-- price range -->
                 <div class="col">
-                    <select class="form-control form-control-sm">
+                    <select class="form-control form-control-sm" id = "priceRange">
                         <option>Select Price Range</option>
-                        <option>£0-£30</option>
-                        <option>£30-£50</option>
-                        <option>£50-£100</option>
-                        <option>£100+</option>
+                        <option value="0-30">£0-£30</option>
+                        <option value="30-50">£30-£50</option>
+                        <option value="50-100">£50-£100</option>
+                        <option value="100-1000">£100+</option>
                     </select>
                 </div>
 
                 <!-- search -->
-                <button type="button" class="btn btn-outline-primary btn-sm">Search</button>
+                <button type="button" class="btn btn-outline-primary btn-sm" id="submitStockSearch"> Search</button>
             </div>
         </form>
 
-        <!-- results from search -->
-        <div class="row">
-
-            <div class="card-group">
-
-                <div class="card mt-5">
-
-                    <!-- shoe image -->
-                    <img class="card-img-top" src="shoePic.jpg" alt="Card image cap">
-
-                    <div class="card-body d-flex flex-column">
-
-                        <!-- shoe name -->
-                        <h5 class="card-title">Shoe 1</h5>
-
-                        <!--  sizing -->
-                        <select class="form-control form-control-sm mt-2">
-                            <option>Selected Size</option>
-                        </select>
-
-                        <!-- insole -->
-                        <select class="form-control form-control-sm mt-2">
-                            <option>Default Insoles</option>
-                        </select>
-
-                        <!-- laces -->
-                        <select class="form-control form-control-sm mt-2">
-                            <option>Default Laces</option>
-                        </select>
-
-                        <!-- price -->
-                        <h5 class="mt-2">£xxx</h5>
-
-                        <!-- add to basket -->
-                        <button type="button" class="btn btn-success mt-2">Add to Basket</button>
-
-                    </div>
-
-
-
+        <!--Container for the cards-->
+        <div class="container" id = "rowContainer">
+            <div class="row g-3">
+                <div class="col-sm-4" >
+                    <div id="card-container"></div> 
+                </div>
+                <!-- <div class = "card-group" id="card-container"></div> -->
                 </div>
             </div>
+        </div>
 
-            <!-- bootstrap js links -->
-            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+        <!--Template for the cards-->
+        <template id="cardTemplate">
+            <div class="card mt-5">
+
+                <img class="card-img-top" src="resources/shoePic.jpg" alt="Card image cap">
+
+                <div class="card-body">
+                    <h4 class="card-title">{title}</h4>
+                    <h5 class="card-title">{name}</h5>
+
+                    <!-- Customization Options -->
+                    <select class="form-control form-control-sm mt-2">
+                        <option>Default Insoles</option>
+                    </select>
+
+                    <select class="form-control form-control-sm mt-2">
+                        <option>Default Laces</option>
+                    </select>
+
+                    <p class="card-text">{size}</p>
+                    <h5 class="card-text">£{price}</h5>
+
+                    <button type="button" class="btn btn-success mt-2" id = {siteID} value={itemID} onclick="addToCart(id,value)">Add to Basket</button>
+                </div>
+            </div>
+        </template>
+
+        <!--Template for the  checkout page-->
+        <template id="checkoutTemplate">
+            <div class="card mt-5">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                <img class="card-img" src="resources/shoePic.jpg" alt="Card image cap">
+                    </div>
+                <div class="card-body">
+                    <h4 class="card-title">{title}</h4>
+                    <h5 class="card-title">{name}</h5>
+                    <p class="card-text">{size}</p>
+                    <h5 class="card-text">£{price}</h5>
+                </div>
+            </div>
+        </div>
+        </template>
+
+        <!--Framework Code for the checkout Modal-->
+        <div class="modal fade" id="checkout" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h3 class="modal-title" id="exampleModalLongTitle">Confirm Checkout</h3>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-container" id="modal-container">
+                  
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Back</button>
+                  <button type="button" class="btn btn-primary">Confirm Checkout</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+            <!-- bootstrap js links 
+            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+            <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+            <script src="jsScripts/customer.js"></script>
 </body>
 
 
