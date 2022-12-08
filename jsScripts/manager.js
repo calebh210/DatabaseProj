@@ -565,6 +565,8 @@ class StockSearch {
 
     appendStock() {
 
+        $('#stockSearchTableBody').html("");
+
         var content = '';
 
         for (var i = 0; i < this.stockResult.length; i++) {
@@ -623,4 +625,113 @@ window.addEventListener('load', function () {
     // functionality to load in the brands in the stock search
     stockSearchObj.getAllBrands()
     stockSearchObj.appendAllBrands()
+})
+
+/**
+ * Holds all functionality to 
+ */
+class AddStaffMember {
+
+    constructor() {
+        this.inRole
+        this.inFName
+        this.inLastName
+        this.inDob
+        this.inSalary
+        this.inGender
+        this.inDateJoined
+        this.inPhoneNum
+        this.email
+    }
+
+    getNewStaffDetails() {
+
+        this.inRole = document.getElementById('role').value
+        this.inFName = document.getElementById('firstName').value
+        this.inLastName = document.getElementById('lastName').value
+        this.inDob = document.getElementById('dateOfBirth').value
+        this.inSalary = document.getElementById('salary').value
+        this.inGender = document.getElementById('gender').value
+        this.inDateJoined = document.getElementById('dateJoined').value
+        this.inPhoneNum = document.getElementById('phoneNum').value
+        this.email = document.getElementById('email').value
+    }
+
+    insertNewStaffMember() {
+
+        var returned
+
+
+        // ajax call to the php 
+        $.ajax({
+            async: false,
+            cache: false,
+            url: "phpScripts/ManagerPage/insertNewStaffMember.php",
+            type: "POST",
+            dataType: "json",
+            data: {
+
+                managerId: firstName,
+                inRole: this.inRole,
+                inFName: this.inFName,
+                inLastName: this.inLastName,
+                inDob: this.inDob,
+                inSalary: this.inSalary,
+                inGender: this.inGender,
+                inDateJoined: this.inDateJoined,
+                inPhoneNum: this.inPhoneNum,
+                email: this.email
+
+            },
+            success: function (data) {
+                returned = data;
+            }
+        });
+
+        return returned
+
+    }
+
+    // checks if any of the fields are empty
+    areFieldsEmpty() {
+
+        if (this.inRole == '' || this.inFName == '' || this.inLastName == '' || this.inDob == '' || this.inSalary == '' || this.inGender == '' || this.inDateJoined == '' || this.inPhoneNum == '' || this.email == '') {
+            return true
+        } else {
+            return false
+        }
+    }
+
+    clearInputs() {
+
+        document.getElementById('addStaffForm').reset();
+
+    }
+
+}
+
+// object for the add staff member button
+var submitNewStaffBtn = document.getElementById('newStaffMember')
+var newStaffMembeObj = new AddStaffMember()
+
+submitNewStaffBtn.addEventListener("click", () => {
+
+    newStaffMembeObj.getNewStaffDetails()
+
+    if (newStaffMembeObj.areFieldsEmpty()) {
+        alert('Ensure all fields are filled')
+    } else {
+        returnVal = newStaffMembeObj.insertNewStaffMember()
+
+        if (returnVal == '') {
+            // clear inputs
+            newStaffMembeObj.clearInputs()
+            alert('New staff member added')
+        } else {
+            alert('Failed to add new staff member')
+        }
+
+    }
+
+
 })
