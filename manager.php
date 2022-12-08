@@ -19,7 +19,6 @@
 </head>
 
 <body>
-
   <!-- main container for bootstrap-->
   <div class="container">
 
@@ -134,39 +133,34 @@
       <button id="addToOrderBtn" type="button" class="btn btn-outline-success btn-lg m-3">Add To Order</button>
     </div>
 
-    <!-- The table that displays the result of a staff search -->
+    <!-- The table that displays the result of the stock order -->
     <div class="row">
       <div class="col">
 
         <!--table with filter-->
-        <table id="staffSearchTable" class="table">
+        <table id="stockOrderTable" class="table">
 
           <!-- head of the table -->
           <thead>
             <tr>
-              <th>Item Name</th>
+              <th>Supplier</th>
               <th>Item ID</th>
               <th>Quantity</th>
               <th>Price</th>
-              <th>Total Price</th>
-              <th></th>
             </tr>
           </thead>
 
           <!-- body where the results of the search will be appended -->
           <tbody id="orderTable">
-            <tr class="orderRow">
-              <td>Inject code here</td>
-              <td>Inject code here</td>
-              <td>Inject code here</td>
-              <td>Inject code here</td>
-              <td>Inject code here</td>
-              <td><button type="button" class="btn btn-danger">Remove</button>
-              </td>
-            </tr>
           </tbody>
 
         </table>
+
+        <div class="row justify-content-center">
+          <button id="removeLastItem" type="button" class="btn btn-outline-danger btn-lg m-3">Remove Last Item</button>
+
+          <button id="placeOrder" type="button" class="btn btn-outline-primary btn-lg m-3">Place Order</button>
+        </div>
 
       </div>
     </div>
@@ -180,78 +174,46 @@
     <!--Search bar-->
     <div class="row">
 
-      <!-- stock ID -->
-      <div class="col">
-        <input type="text" class="form-control" placeholder="Item Number" aria-label="Item Number">
-      </div>
-
       <!-- Brand -->
       <div class="col">
-        <select class="form-control form-control-sm">
-          <option>Select Brand</option>
-          <option>Nike</option>
+        <select id="brandSelect" class="form-control form-control-sm">
+          <option value="none" selected disabled hidden>Select brand</option>
         </select>
 
         <!-- Size -->
       </div>
       <div class="col">
-        <select class="form-control form-control-sm">
+        <select id="shoeSizeSelection" class="form-control form-control-sm">
           <option>Select size</option>
-          <option>Test</option>
-        </select>
-      </div>
-
-      <!-- Price range -->
-      <div class="col">
-        <select class="form-control form-control-sm">
-          <option>Select Price Range</option>
-          <option>$0-$99</option>
         </select>
       </div>
 
 
       <!-- The search button -->
-      <button type="button" class="btn btn-outline-primary btn-sm">Search</button>
+      <button id="stockSearchBtn" type="button" class="btn btn-outline-primary btn-sm">Search</button>
 
     </div>
 
     <div style="padding-top: 2%; padding-bottom:5%;" class="row">
 
-      <div style="padding-left: 6%;" class="col">
-        <img style="height: 90%;" src="resources/shoePic.jpg" style="max-width:70%; ">
 
-      </div>
-
-
-      <div style="padding-top: 6%" class="col">
-
-        <h6>Stock:</h6>
+      <div style="padding-top: 2%" class="col">
         <!--Table with the stocks-->
         <table class="table">
           <thead>
             <tr>
-              <th scope="col">Branch</th>
-              <th scope="col">Stock</th>
+              <th scope="col">ID</th>
+              <th scope="col">Name</th>
+              <th scope="col">Price</th>
+              <th scope="col">Quantity</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <th scope="row">Glasgow</th>
-              <td>27</td>
-            </tr>
+          <tbody id="stockSearchTableBody">
 
-            <th scope="row">Edinburgh</th>
-            <td>49</td>
-            </tr>
-            <tr>
-              <th scope="row">Dundee</th>
-              <td>2</td>
-            </tr>
+
+          </tbody>
         </table>
 
-        <h6>Item num: Asc2556</h6>
-        <h6>Supplier: ASICS EdinSup</h6>
-        <h6>Last Order: 27/04/2021</h6>
       </div>
 
     </div>
@@ -272,4 +234,4 @@
 
 </body>
 
-</html> -->
+</html>

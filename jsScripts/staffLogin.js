@@ -30,7 +30,7 @@ class staffLogin {
         $.ajax({
             async: false,
             cache: false,
-            url: "phpScripts/staffLogin.php",
+            url: "phpScripts/StaffLoginPage/staffLogin.php",
             type: "POST",
             dataType: "json",
             data: {
@@ -85,10 +85,10 @@ loginSubmit.addEventListener("click", () => {
             auth = login.verifyCredentials(staffData[0])
 
             if (auth && login.role == 'manager')
-                window.location.href = "./manager.php?".concat(staffData[0]['first_name']);
+                window.location.href = "./manager.php?".concat(staffData[0]['staff_id']);
 
             else if (auth) {
-                window.location.href = "./staff.php?".concat(staffData[0]['first_name']);
+                window.location.href = "./staff.php?".concat(staffData[0]['staff_id']);
             }
 
         } else {

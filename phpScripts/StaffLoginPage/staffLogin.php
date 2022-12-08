@@ -1,7 +1,7 @@
 <?php
 
 // provides functionality for connection to database
-include "Database.class.php";
+include "../Database.class.php";
 
 class StaffLogin extends Database
 {
