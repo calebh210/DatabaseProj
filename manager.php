@@ -195,8 +195,6 @@
     </div>
 
     <div style="padding-top: 2%; padding-bottom:5%;" class="row">
-
-
       <div style="padding-top: 2%" class="col">
         <!--Table with the stocks-->
         <table class="table">
@@ -215,20 +213,110 @@
         </table>
 
       </div>
-
     </div>
+
+    <!-- Staff search Title -->
+    <div class="row justify-content-left">
+      <h2 class="sectionTitle">Add Staff Member</h2>
+    </div>
+
+
+    <form class="mb-4" id="addStaffForm">
+
+      <!-- input values for the search -->
+      <div class="row">
+
+        <!-- role -->
+        <div class="col">
+          <select id="role" class="form-control form-control">
+            <option value="none" selected disabled hidden>Select Role</option>
+            <option value="manager">Manager</option>
+            <option value="receptionist">Receptionist</option>
+            <option value="assembler">Assembler</option>
+          </select>
+        </div>
+
+        <!-- first name -->
+        <div class="col">
+          <input type="text" class="form-control" id="firstName" placeholder="First Name">
+        </div>
+
+        <!-- Last name -->
+        <div class="col">
+          <input type="text" class="form-control" id="lastName" placeholder="Last Name">
+        </div>
+
+      </div>
+
+
+      <div class="row mt-3">
+
+        <!-- date of birth -->
+        <div class="col">
+          <input type="text" class="form-control" id="dateOfBirth" placeholder="D.O.B" onfocus="(this.type='date')">
+        </div>
+
+        <!-- Salary -->
+        <div class="col">
+          <input type="number" class="form-control" id="salary" placeholder="Salary">
+        </div>
+
+        <!-- Gender -->
+        <div class="col">
+          <select id="gender" class="form-control form-control">
+            <option value="none" selected disabled hidden>Select Gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">other</option>
+          </select>
+        </div>
+
+      </div>
+
+      <div class="row mt-3">
+
+        <!-- date joined -->
+        <div class="col">
+          <input type="text" class="form-control" id="dateJoined" placeholder="Date Joined" onfocus="(this.type='date')">
+        </div>
+
+        <!-- phoneNum -->
+        <div class="col">
+          <input type="number" class="form-control" id="phoneNum" placeholder="Phone Number">
+        </div>
+
+
+        <!-- email -->
+        <div class="col">
+          <input type="email" class="form-control" id="email" placeholder="email">
+        </div>
+
+      </div>
+
+
+    </form>
+
+    <!-- insert new staff member submit -->
+    <div class="row p-4">
+      <div class="col-md-6 offset-md-3 text-center">
+        <button type="button" value="submit" id="newStaffMember" class="btn btn-outline-primary btn-sm">Add Staff Member</button>
+      </div>
+    </div>
+
+
+
     <!--End container-->
+  </div>
+  <!-- Jquery CDN -->
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 
-    <!-- Jquery CDN -->
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <!-- js to interact with php -->
+  <script type="text/javascript" src="jsScripts/manager.js"></script>
 
-    <!-- js to interact with php -->
-    <script type="text/javascript" src="jsScripts/manager.js"></script>
-
-    <!-- bootstrap scrpits
+  <!-- bootstrap scrpits
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 
 

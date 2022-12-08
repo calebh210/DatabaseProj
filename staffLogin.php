@@ -52,20 +52,8 @@
                     <button type="button" id="login" class="btn btn-primary btn-block mb-4">Sign in</button>
 
                 </form>
-
-                <p>DELETE BEFORE SUBMISSION</p>
-                <p>manager acc:</p>
-                <p>username: 1</p>
-                <p>pass: David1</p>
-                <br>
-                <p>regular acc</p>
-                <p>username: 8</p>
-                <p>pass: Alice8</p>
             </div>
         </div>
-
-
-
 
     </div>
 
