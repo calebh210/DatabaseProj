@@ -26,7 +26,16 @@ class StockSearch extends Database
         
         //customer_stock_search (branch, brand, size, lowerp, upperp)
         // $sqlQuery = "CALL customer_stock_search(?,?,?,?,?);";
-        $sqlQuery = "SELECT * FROM stock_items WHERE brand = ? AND price BETWEEN ? AND ? AND size = ?;";
+        $sqlQuery = "SELECT * FROM stock_items WHERE type = 'Shoe' AND brand = ? AND price BETWEEN ? AND ?";
+      
+        if ($this->size == 0){
+            $sqlQuery .= " AND size > ? " ;
+        }else{
+            $sqlQuery .= " AND size = ? " ;
+        }
+
+
+        $sqlQuery .= ';';
         $stmt = $this->connect()->prepare($sqlQuery);
 
         if (!$stmt->execute(array($this->brand, $this->priceRangeMin,$this->priceRangeMax, $this->size))) {
