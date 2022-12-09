@@ -22,6 +22,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-light bg-dark">
 
+
         <a class="navbar-brand text-light" href="index.html">Home</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -37,6 +38,8 @@
     <!-- main container -->
     <div class="container">
 
+
+
         <!-- logo and cart images -->
         <i class="fa badge rounded float-right mt-2" style="font-size:32px" id='cart' onclick="showCheckout()" value=0> &#xf07a;</i>
 
@@ -47,6 +50,19 @@
         <div class="row justify-content-left">
             <h2 id="welcomeMessage">Welcome to Run 5-Hundred!</h2>
         </div>
+
+        <div class="row">
+            <div class="col-3">
+                <select id="stockItems" class="form-control form-control-sm">
+                    <option value="None" selected disabled hidden>Select current branch</option>
+                    <option value="1">Dundee</option>
+                    <option value="2">Edinburgh</option>
+                    <option value="3">Glasgow</option>
+                </select>
+            </div>
+        </div>
+
+
 
         <!-- Shoe search -->
         <div class="row justify-content-left">
