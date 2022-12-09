@@ -24,7 +24,7 @@
     <div class="container">
 
         <!-- logo and cart images -->
-        <i class="fa badge rounded float-right mt-2" style="font-size:32px" id= 'cart' onclick="checkout()" value= 0  > &#xf07a;</i>
+        <i class="fa badge rounded float-right mt-2" style="font-size:32px" id= 'cart' onclick="showCheckout()" value= 0  > &#xf07a;</i>
 
         <!-- <img id="cart" src="resources/cart.png" class="rounded float-rigth" alt="cart" value=5> -->
         <img class="logo" src="resources/logo.png" alt="logo">
@@ -45,15 +45,9 @@
 
                 <!-- brand -->
                 <div class="col">
-                    <select class="form-control form-control-sm" id="brand">
+                    <select class="form-control" id="brand">
                         <option>Select Brand</option>
-                        <option value="nike">Nike</option>
-                        <option value = "puma">Puma</option>
-                        <option value = "NewBalance">New Balance</option>
-                        <option value = "Asics">Asics</option>
-                        <option value = "Brooks">Brooks</option>
-                        <option value = "AllStar">AllStar</option>
-                        <option value = "Sketches">Sketchers</option>
+                       
 
                     </select>
 
@@ -64,12 +58,14 @@
                     <!-- <select class="form-control form-control-sm">
                         <option>Select size</option>
                     </select> -->
-                    <input type="text" class="form-control" id="size">
+                    <select type="text" class="form-control" id="size">
+                        <option>Select Size</option>
+                    </select>
                 </div>
 
                 <!-- price range -->
                 <div class="col">
-                    <select class="form-control form-control-sm" id = "priceRange">
+                    <select class="form-control" id = "priceRange">
                         <option>Select Price Range</option>
                         <option value="0-30">£0-£30</option>
                         <option value="30-50">£30-£50</option>
@@ -85,19 +81,29 @@
 
         <!--Container for the cards-->
         <div class="container" id = "rowContainer">
-            <div class="row g-3">
-                <div class="col-sm-4" >
-                    <div id="card-container"></div> 
+           
+            <div class = "row g-3">
+                <div class="col-4" >
+                    <div id="card-container1"></div> 
                 </div>
-                <!-- <div class = "card-group" id="card-container"></div> -->
+                <div class="col-4" >
+                    <div id="card-container2"></div> 
                 </div>
-            </div>
+                <div class="col-4" >
+                    <div id="card-container3"></div> 
+                </div>
+            </div><!-- <div class = "card-group" id="card-container"></div> -->
+
         </div>
 
 
+
+
+</div>
+
         <!--Template for the cards-->
         <template id="cardTemplate">
-            <div class="card mt-5">
+            <div class="card mt-5" id= {siteID} >
 
                 <img class="card-img-top" src="resources/shoePic.jpg" alt="Card image cap">
 
@@ -114,26 +120,27 @@
                         <option>Default Laces</option>
                     </select>
 
-                    <p class="card-text">{size}</p>
+                    <p class="card-text mt-3">Size {size}</p>
                     <h5 class="card-text">£{price}</h5>
 
-                    <button type="button" class="btn btn-success mt-2" id = {siteID} value={itemID} onclick="addToCart(id,value)">Add to Basket</button>
+                    <button type="button" class="btn btn-success mt-2" value={itemID} onclick="addToCart(value)">Add to Basket</button>
                 </div>
             </div>
         </template>
 
         <!--Template for the  checkout page-->
         <template id="checkoutTemplate">
-            <div class="card mt-5">
+            <div class="card mt-5" id = {checkoutID} >
                 <div class="row no-gutters">
                     <div class="col-md-4">
-                <img class="card-img" src="resources/shoePic.jpg" alt="Card image cap">
+                <img class="card-img m-3 p-x-3" src="resources/shoePic.jpg" alt="Card image cap">
                     </div>
-                <div class="card-body">
-                    <h4 class="card-title">{title}</h4>
+                <div class="card-body justify-content-right m-3">
+                    <h4 class="card-title ">{title}</h4>
                     <h5 class="card-title">{name}</h5>
-                    <p class="card-text">{size}</p>
+                    <p class="card-text">Size: {size}</p>
                     <h5 class="card-text">£{price}</h5>
+                    <button type="button" class="btn btn-danger mt-2" value={itemID} id= {siteID} onclick="removeFromCart(value,id)">Remove from Basket</button>
                 </div>
             </div>
         </div>
@@ -153,8 +160,9 @@
                   
                 </div>
                 <div class="modal-footer">
+                <h5 id = "total"></h5>
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Back</button>
-                  <button type="button" class="btn btn-primary">Confirm Checkout</button>
+                  <button type="button" class="btn btn-primary" onclick="confirmCheckout()">Confirm Checkout</button>
                 </div>
               </div>
             </div>

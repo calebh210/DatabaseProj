@@ -10,9 +10,12 @@ class StockSearch extends Database
     private $priceRangeMax;
     private $size;
 
+    private $branch;
+
 
     public function __construct($brand, $priceRangeMin,$priceRangeMax, $size){
         $this->brand = $brand;
+        // $this->branch = $branch;
         $this->priceRangeMin = $priceRangeMin;
         $this->priceRangeMax = $priceRangeMax;
         $this->size = $size;
@@ -20,7 +23,10 @@ class StockSearch extends Database
 
     public function searchStockTable()
     {
-        $sqlQuery = "SELECT * FROM stock_items WHERE brand = ? AND price BETWEEN ? AND ? or size = ?;";
+        
+        //customer_stock_search (branch, brand, size, lowerp, upperp)
+        // $sqlQuery = "CALL customer_stock_search(?,?,?,?,?);";
+        $sqlQuery = "SELECT * FROM stock_items WHERE brand = ? AND price BETWEEN ? AND ? AND size = ?;";
         $stmt = $this->connect()->prepare($sqlQuery);
 
         if (!$stmt->execute(array($this->brand, $this->priceRangeMin,$this->priceRangeMax, $this->size))) {
@@ -35,6 +41,7 @@ class StockSearch extends Database
 }
 
 $brand = $_POST['brand'];
+// $branch = $_POST['branch'];
 $priceRangeMin = $_POST['priceRangeMin'];
 $priceRangeMax = $_POST['priceRangeMax'];
 $size = $_POST['size'];
