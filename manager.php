@@ -19,6 +19,23 @@
 </head>
 
 <body>
+
+  <!-- navbar -->
+  <div class="pos-f-t">
+    <div class="collapse" id="navbarToggleExternalContent">
+      <div class="bg-dark p-4">
+        <h3 id="navbarHeader" class="text-white mb-5"></h3>
+        <p><a href="staffLogin.php" class="text-white">Return to staff login page</a></p>
+        <p><a href="index.html" class="text-white">Customer page</a></p>
+      </div>
+    </div>
+    <nav class="navbar navbar-dark bg-dark">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  </div>
+
+
   <!-- main container for bootstrap-->
   <div class="container">
 

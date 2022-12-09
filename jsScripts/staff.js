@@ -2,6 +2,42 @@
 staffTag = document.getElementById("staffName");
 StaffID = window.location.search.split('?')[1];
 
+class BranchSearch {
+
+    constructor(staffId) {
+        this.staffID = staffId;
+        this.branchId;
+    }
+
+    searchDatabase() {
+
+        var returned;
+
+        // ajax call to the php 
+        $.ajax({
+            async: false,
+            cache: false,
+            url: "phpScripts/ManagerPage/branchSearch.php",
+            type: "POST",
+            dataType: "json",
+            data: {
+                staffId: this.staffID,
+            },
+            success: function (data) {
+                returned = data
+            }
+        });
+        this.branchId = returned
+        this.appendSearchResults()
+
+    }
+
+    appendSearchResults() {
+        $("#navbarHeader").append('Currently in Branch #' + this.branchId[0]['branch_id']);
+    }
+
+}
+
 class StockSearch {
 
     constructor() {
@@ -270,6 +306,10 @@ window.addEventListener('load', function () {
     // functionality to load in the brands in the stock search
     stockSearchObj.getAllBrands()
     stockSearchObj.appendAllBrands()
+
+    // appends the branch number to the nav
+    var branchSearchObj = new BranchSearch(StaffID)
+    branchSearchObj.searchDatabase()
 
 })
 
