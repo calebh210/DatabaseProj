@@ -23,11 +23,13 @@
 
 <body>
 
+  <!-- navbar -->
   <div class="pos-f-t">
     <div class="collapse" id="navbarToggleExternalContent">
       <div class="bg-dark p-4">
-        <h4 class="text-white">Collapsed content</h4>
-        <span class="text-muted">Toggleable via the navbar brand.</span>
+        <h3 id="navbarHeader" class="text-white mb-5"></h3>
+        <p><a href="staffLogin.php" class="text-white">Return to staff login page</a></p>
+        <p><a href="index.html" class="text-white">Customer page</a></p>
       </div>
     </div>
     <nav class="navbar navbar-dark bg-dark">

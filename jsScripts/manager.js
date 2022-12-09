@@ -5,6 +5,42 @@ firstName = window.location.search.split('?')[1];
 // loads pie chart api
 google.charts.load('current', { 'packages': ['corechart'] });
 
+class BranchSearch {
+
+    constructor(staffId) {
+        this.staffID = staffId;
+        this.branchId;
+    }
+
+    searchDatabase() {
+
+        var returned;
+
+        // ajax call to the php 
+        $.ajax({
+            async: false,
+            cache: false,
+            url: "phpScripts/ManagerPage/branchSearch.php",
+            type: "POST",
+            dataType: "json",
+            data: {
+                staffId: this.staffID,
+            },
+            success: function (data) {
+                returned = data
+            }
+        });
+        this.branchId = returned
+        this.appendSearchResults()
+
+    }
+
+    appendSearchResults() {
+        $("#navbarHeader").append('Currently in Branch #' + this.branchId[0]['branch_id']);
+    }
+
+}
+
 
 /**
  * Provides all the structures and functions to search for staff members
@@ -740,6 +776,10 @@ window.addEventListener('load', function () {
     // functionality to load in the brands in the stock search
     stockSearchObj.getAllBrands()
     stockSearchObj.appendAllBrands()
+
+
+    var branchSearchObj = new BranchSearch(firstName)
+    branchSearchObj.searchDatabase()
 })
 
 /**
