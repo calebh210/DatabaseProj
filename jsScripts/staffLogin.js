@@ -80,7 +80,7 @@ loginSubmit.addEventListener("click", () => {
         if (staffData != "") {
 
             // not secure, i know...
-            login.passsword = staffData[0]['first_name'].concat(staffData[0]['staff_id']);
+            login.passsword = 'password';
             login.role = staffData[0]['role']
             auth = login.verifyCredentials(staffData[0])
 
