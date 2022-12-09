@@ -2,6 +2,9 @@
 staffTag = document.getElementById("staffName");
 firstName = window.location.search.split('?')[1];
 
+// loads pie chart api
+google.charts.load('current', { 'packages': ['corechart'] });
+
 
 /**
  * Provides all the structures and functions to search for staff members
@@ -62,72 +65,62 @@ class StaffSearch {
                 staffLastName: this.staffLastName,
             },
             success: function (data) {
-                returned = data;
+                returned = data
             }
         });
-
-        return returned
-    }
-
-
-    /**
-     * Creates and appends the staff search results table
-     * 
-     * https://www.geeksforgeeks.org/how-to-convert-json-data-to-a-html-table-using-javascript-jquery/
-     * @param {*} list 
-     */
-    constructTable(list) {
-
-        // // Getting the all column names
-        var cols = this.headers(list, "#staffSearchResults");
-
-        // Traversing the JSON data
-        for (var i = 0; i < list.length; i++) {
-            var row = $('<tr/>');
-            for (var colIndex = 0; colIndex < cols.length; colIndex++) {
-                var val = list[i][cols[colIndex]];
-
-                // If there is any key, which is matching
-                // with the column name
-                if (val == null) val = "";
-                row.append($('<td/>').html(val));
-
-            }
-            // Adding each row to the table
-            $('#staffSearchResults').append(row);
-        }
-    }
-
-    disciplianries() {
-        alert(this.value)
+        this.searchResult = returned
+        this.appendSearchResults()
     }
 
     /**
-     * Returns the columns of a table
-     * 
-     * https://www.geeksforgeeks.org/how-to-convert-json-data-to-a-html-table-using-javascript-jquery/
-     * @param {*} list 
-     * @param {*} selector 
-     * @returns 
+     * Appends the result of the staff search to the DOM
      */
-    headers(list, selector) {
-        var columns = [];
-        var header = $('<tr/>');
+    appendSearchResults() {
 
-        for (var i = 0; i < list.length; i++) {
-            var row = list[i];
+        // reset table
+        $('staffSearchResults').html("");
 
-            for (var k in row) {
-                if ($.inArray(k, columns) == -1) {
-                    columns.push(k);
 
-                    // Creating the header
-                    header.append($('<th/>').html(k));
-                }
-            }
+
+        for (var i = 0; i < this.searchResult.length; i++) {
+
+            var content = ''
+
+            var staffId = this.searchResult[i]['staff_id']
+            var branchId = this.searchResult[i]['branch_id']
+            var position = this.searchResult[i]['role']
+            var fName = this.searchResult[i]['first_name']
+            var lName = this.searchResult[i]['surname']
+            var dateOfBirth = this.searchResult[i]['date_of_birth']
+            var salary = this.searchResult[i]['salary']
+            var gender = this.searchResult[i]['gender']
+            var dateJoined = this.searchResult[i]['date_joined']
+            var phoneNum = this.searchResult[i]['phone_num']
+            var email = this.searchResult[i]['email']
+
+            // update sizes with new values
+            content = '<tr>' +
+                '<td>' + staffId + '</td > ' +
+                '<td>' + branchId + '</td > ' +
+                '<td>' + position + '</td > ' +
+                '<td>' + fName + '</td > ' +
+                '<td>' + lName + '</td > ' +
+                '<td>' + dateOfBirth + '</td > ' +
+                '<td>' + salary + '</td > ' +
+                '<td>' + gender + '</td > ' +
+                '<td>' + dateJoined + '</td > ' +
+                '<td>' + phoneNum + '</td > ' +
+                '<td>' + email + '</td > ' +
+
+                '<td>' + "<button onclick='viewDisciplinaries(this)' value='" + staffId + "' type='button' class='btn btn-danger'> Disciplinaries </button >" + "</td >" +
+                "</tr >\n";
+
+
+            $('#staffSearchResults').append(content);
         }
-        return columns;
     }
+
+
 }
 
 
@@ -153,10 +146,7 @@ staffSearchSubmit.addEventListener("click", () => {
     if (!searchStaff.allFieldsEmpty()) {
 
         // querying database
-        resultsArray = searchStaff.searchDatabase();
-
-        // appending table to the DOM
-        searchStaff.constructTable(resultsArray);
+        searchStaff.searchDatabase();
     }
 
 
@@ -170,6 +160,131 @@ staffSearchSubmit.addEventListener("click", () => {
 
 
 })
+
+
+
+
+
+
+/**
+ * Provides all the structures and functions to search for staff members
+ */
+class DisciplinarieSearch {
+
+    constructor(staffId) {
+        this.staffID = staffId;
+        this.disciplinaryData
+    }
+
+
+    /**
+     * Uses jQuery's ajax to interact with php, searching the database for disciplinaries based on staff id
+     */
+    searchDatabase() {
+
+        var returned;
+
+        // ajax call to the php 
+        $.ajax({
+            async: false,
+            cache: false,
+            url: "phpScripts/ManagerPage/disciplinariesSearch.php",
+            type: "POST",
+            dataType: "json",
+            data: {
+                staffId: this.staffID
+            },
+            success: function (data) {
+                returned = data
+            }
+        });
+
+        this.searchResult = returned
+    }
+
+
+}
+
+/**
+ * Disciplinaries modal show
+ * 
+ * @param {
+ * } staffId 
+ */
+function viewDisciplinaries(buttonObj) {
+
+    // reset the title obj
+    $("#disciplinaryModalTitle").html("");;
+    $("#pieChart").html("")
+
+    // store staff id
+    var staffId = buttonObj.value
+
+    // create new disciplinary obj and search database
+    var disciplinarieSearchObj = new DisciplinarieSearch(staffId)
+    disciplinarieSearchObj.searchDatabase()
+
+    if (disciplinarieSearchObj.searchResult.length != 0) {
+
+        // set and append modal title
+        var modalTitle = document.createTextNode('Disciplinaries for staff ID: ' + staffId);
+        $("#disciplinaryModalTitle").append(modalTitle);
+
+        // creates the array for the pie chart data
+        var pieData = new Array();
+        pieData.push(['Type', 'Occurances'])
+
+
+        for (let i = 0; i < disciplinarieSearchObj.searchResult.length; i++) {
+
+            var inArray = false
+
+            // check to see if the item is already in the array
+            for (let j = 0; j < pieData.length; j++) {
+                if (disciplinarieSearchObj.searchResult[i]['type'] == pieData[j]) {
+                    pieData[j][1] += 1
+                    inArray = true;
+                    break
+                }
+            }
+
+            if (inArray == true) {
+                continue
+            }
+            else {
+                pieData.push([disciplinarieSearchObj.searchResult[i]['type'], 1])
+            }
+        }
+
+        disciplinarieSearchObj.searchResult
+
+
+        var data = google.visualization.arrayToDataTable(pieData);
+
+        // Optional; add a title and set the width and height of the chart
+        var options = { 'title': 'Disciplinaries', 'width': 550, 'height': 400 };
+
+        // Display the chart inside the <div> element with id="piechart"
+        var chart = new google.visualization.PieChart(document.getElementById('pieChart'));
+        chart.draw(data, options);
+
+        $('#disciplinaryModal').show();
+    } else {
+        alert('No disciplinaries')
+    }
+
+
+}
+
+/**
+ * closes the disciplinary modal
+ */
+$(function () {
+    $('#closeDisciplinaryModal').on('click', function (event) {
+        $('#disciplinaryModal').hide();
+    });
+
+});
 
 
 /**
