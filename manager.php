@@ -100,6 +100,34 @@
       </div>
     </div>
 
+    <!-- disciplinaries info modal -->
+    <div class="modal" id="disciplinaryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+
+      <div class="modal-dialog modal-dialog-centered" role="document">
+
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <h5 class="modal-title" id="disciplinaryModalTitle"></h5>
+
+            <button id="closeDisciplinaryModal" type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+
+          </div>
+
+          <div id="modalBody" class="modal-body">
+
+            <div id="pieChart"></div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+
     <!-- supplier order title -->
     <div class="row justify-content-left">
       <h2 class="sectionTitle">Supplier Order</h2>
@@ -307,14 +335,20 @@
 
     <!--End container-->
   </div>
+
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
   <!-- Jquery CDN -->
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+  <!-- pie chart scripts -->
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
   <!-- js to interact with php -->
   <script type="text/javascript" src="jsScripts/manager.js"></script>
 
-  <!-- bootstrap scrpits
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+
+  <!-- bootstrap scripts -->
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
